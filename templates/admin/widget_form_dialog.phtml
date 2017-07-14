@@ -1,0 +1,32 @@
+<div class="displetreader displet-widget-config-dialog">
+	<form>
+
+		<div class="displetreader displet-widget-config-options ui-widget-content">
+			<table>
+				<tr>
+					<th scope="row">Sort By</th>
+					<td>
+						<select name="sortby">
+							<option value=""></option>
+							<option value="price_low_to_high">Price Low to High</option>
+							<option value="price_high_to_low">Price High to Low</option>
+							<option value="list_date_desc">Newest</option>
+						</select>
+					</td>
+					<th scope="row">Limit Listings Display to</th>
+					<td>
+						<select name="max_listings">
+							<option value="5">5</option>
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+							<option value="25">25</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+		</div>
+<?php $array = array(); DispletReader_View::draw_admin_template('criteria.phtml', $array) ?>
+
+	</form>
+</div>

@@ -1,0 +1,841 @@
+<?php
+	$pages = get_posts('post_type=page&orderby=title&numberposts=-1&order=asc');
+?>
+<div class="wrap displetreader">
+	<h2>DispletReader Settings</h2>
+
+	<div id="displetreader-admin" class="ui-widget ui-widget-content ui-corner-all">
+		<form method="post" id="displetreader-options-form" action="options.php">
+<?php settings_fields('displetreader') ?>
+		<div class="form-tabs">
+			<li class="tab-1 active"><a href="javascript:void(0);">General</a></li>
+			<li class="tab-2"><a href="javascript:void(0);">Statistics</a></li>
+			<li class="tab-3"><a href="javascript:void(0);">Map</a></li>
+			<li class="tab-4"><a href="javascript:void(0);">Quick Search</a></li>
+			<div class="clear"><!-- --></div>
+		</div>
+		<table class="form-table table-1">
+			<tr>
+				<th scope="row"><label for="enabled">Status</label></th>
+				<td>
+<?php if ($settings['enabled']) : ?>
+					<input type="radio" id="enableddispletreader" name="displetreader[enabled]" value="1"
+						checked="checked"/>Enabled<br/>
+					<input type="radio" id="disableddispletreader" name="displetreader[enabled]" value="0"/>Disabled (shortcode hidden)<br/>
+<?php else: ?>
+					<input type="radio" id="enableddispletreader" name="displetreader[enabled]" value="1"/>Enabled<br/>
+					<input type="radio" id="disableddispletreader" name="displetreader[enabled]" value="0"
+						checked="checked"/>Disabled (shortcode hidden)<br/>
+<?php endif ?>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="search_type">Search Type</label></th>
+				<td>
+<?php if ($settings['displet_pro_search']) : ?>
+					<input type="radio" id="displetreaderpro" name="displetreader[displet_pro_search]"  value="1" checked="checked"/>Displet Pro<br/>
+					<input type="radio" id="ondispletreader" name="displetreader[displet_pro_search]" value="0"/>On Displet (Framed)<br/>
+					
+<?php else: ?>
+					<input type="radio" id="displetreaderpro" name="displetreader[displet_pro_search]" value="1"/>Displet Pro<br/>
+					<input type="radio" id="ondispletreader" name="displetreader[displet_pro_search]" value="0" checked="checked"/>On Displet (Framed)<br/>
+<?php endif ?>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			<tr id="ondispletlandingpage" class="displet_option_row <?php echo ($settings['displet_pro_search'] ? "hidden" : "") ?>" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="ondisplet_landing_page">Landing Page</label></th>
+				<td>
+					<select name="displetreader[ondisplet_landing_page]">
+					<?php foreach($pages as $id=>$page) : ?>
+						<option value="<?php echo $page->ID ?>" <?php echo ($settings['ondisplet_landing_page'] == $page->ID ? 'selected="selected"': ''); ?>><?php echo get_the_title($page->ID); ?></option>
+					<?php endforeach; ?>					
+					</select><br/><span class="option_comment">The [DispletFrame] shortcode must be present on the landing page for the results to display properly.</span>		
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="displet_url">Displet URL</label></th>
+				<td>
+					<input size="30"
+						type="text"
+						name="displetreader[displet_url]"
+						class="url"
+						value="<?php echo esc_attr($settings['displet_url']) ?>"/>
+				<br/><span class="option_comment">This is the url provided by displet for your search page (ie. http://demo.displet.com).</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="rows_per_page">Default Listings Per Page</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[rows_per_page]"
+						class="digits"
+						value="<?php echo esc_attr($settings['rows_per_page']) ?>"/>
+				<br/><span class="option_comment">How many listings results should show per page? (Displet Pro only).</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="default_sort">Default Sort</label></th>
+				<td>
+<?php if ($settings['default_sort'] == 'price_low_to_high') : ?>
+					<select name="displetreader[default_sort]">
+						<option selected="selected"
+							value="price_low_to_high">Price Low to High</option>
+						<option value="price_high_to_low">Price High to Low</option>
+						<option value="list_date_desc">Newest</option>
+					</select>
+<?php elseif ($settings['default_sort'] == 'price_high_to_low') : ?>
+					<select name="displetreader[default_sort]">
+						<option value="price_low_to_high">Price Low to High</option>
+						<option selected="selected"
+							value="price_high_to_low">Price High to Low</option>
+						<option value="list_date_desc">Newest</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[default_sort]">
+						<option value="price_low_to_high">Price Low to High</option>
+						<option value="price_high_to_low">Price High to Low</option>
+						<option selected="selected"
+							value="list_date_desc">Newest</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="Default">Default Listings Display</label></th>
+				<td>
+
+<?php switch ($settings['default_orientation']) : ?>
+<?php case 'custom' : ?>
+					<select name="displetreader[default_orientation]">
+						<option value="vertical">Vertical</option>
+						<option value="tile">Tile</option>
+						<option selected="selected" value="custom">Custom</option>
+					</select>
+<?php break ?>
+<?php case 'tile': ?>
+					<select name="displetreader[default_orientation]">
+						<option value="vertical">Vertical</option>
+						<option selected="selected" value="tile">Tile</option>
+						<option value="custom">Custom</option>
+					</select>
+<?php break ?>
+<?php default: ?>
+					<select name="displetreader[default_orientation]">
+						<option selected="selected" value="vertical">Vertical</option>
+						<option value="tile">Tile</option>
+						<option value="custom">Custom</option>
+					</select>
+<?php endswitch ?>
+				<br/><span class="option_comment">Select the orientation you would like listing results to appear in by default.</span>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="price_navigation">Price Navigation</label></th>
+				<td>
+<?php if ($settings['price_navigation'] == 'yes') : ?>
+					<select name="displetreader[price_navigation]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[price_navigation]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="property_type_navigation">Property Type Navigation</label></th>
+				<td>
+<?php if ($settings['property_type_navigation'] == 'yes') : ?>
+					<select name="displetreader[property_type_navigation]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[property_type_navigation]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="include_listing_office">Include Listing Office</label></th>
+				<td>
+<?php if ($settings['include_listing_office'] == 'yes') : ?>
+					<select name="displetreader[include_listing_office]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[include_listing_office]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="cache_lifetime">Cache Lifetime</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[cache_lifetime]"
+						class="digits"
+						value="<?php echo esc_attr($settings['cache_lifetime']) ?>"/>
+					<br/><span class="option_comment">Time in seconds the results be kept in memory before refreshing (86400 seconds = 1 day).</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="disclaimers_enabled">Disclaimers</label></th>
+				<td>
+<?php if ($settings['disclaimers_enabled']) : ?>
+					<input type="radio"
+						name="displetreader[disclaimers_enabled]"
+						value="1"
+						checked="checked"/>Enabled<br/>
+					<input type="radio"
+						name="displetreader[disclaimers_enabled]"
+						value="0"/>Disabled
+<?php else : ?>
+					<input type="radio"
+						name="displetreader[disclaimers_enabled]"
+						value="1"/>Enabled<br/>
+					<input type="radio"
+						name="displetreader[disclaimers_enabled]"
+						value="0"
+						checked="checked"/>Disabled
+<?php endif ?>
+					<br/><span class="option_comment">Should a disclaimer be shown below listing results?</span>
+	
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="">Disclaimer</label></th>
+				<td>
+					<textarea name="displetreader[disclaimer]"><?php echo esc_html($settings['disclaimer']) ?></textarea>
+					<br/><span class="option_comment">Disclaimer text to appear at bottom of listings (html is allowed).</span>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="remove_link">Remove Link?</label></th>
+				<td>
+<?php if ($settings['remove_link'] == 'yes') : ?>
+					<select name="displetreader[remove_link]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[remove_link]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row">Debug in HTML comments</th>
+				<td>
+<?php if ($settings['comments_debug_enabled']) : ?>
+					<input type="radio"
+						name="displetreader[comments_debug_enabled]"
+						value="1"
+						checked="checked"/>Enabled<br/>
+					<input type="radio"
+						name="displetreader[comments_debug_enabled]"
+						value="0"/>Disabled
+<?php else : ?>
+					<input type="radio"
+						name="displetreader[comments_debug_enabled]"
+						value="1"/>Enabled<br/>
+					<input type="radio"
+						name="displetreader[comments_debug_enabled]"
+						value="0"
+						checked="checked"/>Disabled
+<?php endif ?>
+					<br/><span class="option_comment">Should debug code be shown in the html comments?</span>
+	
+				</td>
+			</tr>
+		</table>
+		<table class="form-table table-2" style="display:none;">
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="stats">Default Stats Include</label></th>
+				<td>
+<?php if ($settings['stats'] == 'yes') : ?>
+					<select name="displetreader[stats]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[stats]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="stats">Show Pending Listings Count?</label></th>
+				<td>
+<?php if ($settings['show_pending_count'] == 'yes') : ?>
+					<select name="displetreader[show_pending_count]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[show_pending_count]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+		</table>
+		<table class="form-table table-3" style="display:none;">
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="map">Include Map by Default?</label></th>
+				<td>
+<?php if ($settings['map'] == 'yes') : ?>
+					<select name="displetreader[map]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[map]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="map_hide">Hide Map by Default?</label></th>
+				<td>
+<?php if ($settings['map_hide'] == 'yes') : ?>
+					<select name="displetreader[map_hide]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[map_hide]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="map_height">Default Map Height</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[map_height]"
+						class="digits"
+						value="<?php echo esc_attr($settings['map_height']) ?>"/>
+					<br/><span class="option_comment">Height in pixels. Enter an integer only. Leave blank to auto-size.</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="map_width">Default Map Width</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[map_width]"
+						class="digits"
+						value="<?php echo esc_attr($settings['map_width']) ?>"/>
+					<br/><span class="option_comment">Width in pixels. Enter an integer only. Leave blank to auto-size.</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			<tr class="displet_option_row displetprooption" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="map_latlong_distance">Max Latitudinal/Longitudinal Variance</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[map_latlong_distance]"
+						class="digits"
+						value="<?php echo esc_attr($settings['map_latlong_distance']) ?>"/>
+					<br/><span class="option_comment">Degrees in longitude and latitude to allow from the average listing when mapping. Ex. 2</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+		</table>
+		<table class="form-table table-4" style="display:none;">
+			
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="displet_quick_search_color">Color Scheme</label></th>
+				<td>
+					<?php if ($settings['displet_quick_search_color'] == 'red') : ?>
+						<select name="displetreader[displet_quick_search_color]">
+							<option value="black">Black</option>
+							<option value="red" selected="selected">Red</option>
+							<option value="green">Green</option>
+							<option value="blue">Blue</option>
+							<option value="yellow">Yellow</option>
+							<option value="brown">Brown</option>
+						</select>
+					<?php elseif ($settings['displet_quick_search_color'] == 'green') : ?>
+						<select name="displetreader[displet_quick_search_color]">
+							<option value="black">Black</option>
+							<option value="red">Red</option>
+							<option value="green" selected="selected">Green</option>
+							<option value="blue">Blue</option>
+							<option value="yellow">Yellow</option>
+							<option value="brown">Brown</option>
+						</select>			
+					<?php elseif ($settings['displet_quick_search_color'] == 'blue') : ?>
+						<select name="displetreader[displet_quick_search_color]">
+							<option value="black">Black</option>
+							<option value="red">Red</option>
+							<option value="green">Green</option>
+							<option value="blue" selected="selected">Blue</option>
+							<option value="yellow">Yellow</option>
+							<option value="brown">Brown</option>
+						</select>
+					<?php elseif ($settings['displet_quick_search_color'] == 'yellow') : ?>
+						<select name="displetreader[displet_quick_search_color]">
+							<option value="black">Black</option>
+							<option value="red">Red</option>
+							<option value="green">Green</option>
+							<option value="blue">Blue</option>
+							<option value="yellow" selected="selected">Yellow</option>
+							<option value="brown">Brown</option>
+						</select>
+					<?php elseif ($settings['displet_quick_search_color'] == 'brown') : ?>
+						<select name="displetreader[displet_quick_search_color]">
+							<option value="black">Black</option>
+							<option value="red">Red</option>
+							<option value="green">Green</option>
+							<option value="blue">Blue</option>
+							<option value="yellow">Yellow</option>
+							<option value="brown" selected="selected">Brown</option>
+						</select>
+					<?php else : ?>
+						<select name="displetreader[displet_quick_search_color]">
+							<option value="black" selected="selected">Black</option>
+							<option value="red">Red</option>
+							<option value="green">Green</option>
+							<option value="blue">Blue</option>
+							<option value="yellow">Yellow</option>
+							<option value="brown">Brown</option>
+						</select>
+					<?php endif; ?>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="include_quick_terms">Include Quick Terms?</label></th>
+				<td>
+<?php if ($settings['include_quick_terms'] == 'yes') : ?>
+					<select name="displetreader[include_quick_terms]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[include_quick_terms]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="include_property_type">Include Property Type?</label></th>
+				<td>
+<?php if ($settings['include_property_type'] == 'yes') : ?>
+					<select name="displetreader[include_property_type]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[include_property_type]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="include_price">Include Price?</label></th>
+				<td>
+<?php if ($settings['include_price'] == 'yes') : ?>
+					<select name="displetreader[include_price]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[include_price]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="include_beds_baths">Include Beds/Baths?</label></th>
+				<td>
+<?php if ($settings['include_beds_baths'] == 'yes') : ?>
+					<select name="displetreader[include_beds_baths]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[include_beds_baths]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="include_keywords">Include Keywords?</label></th>
+				<td>
+<?php if ($settings['include_keywords'] == 'yes') : ?>
+					<select name="displetreader[include_keywords]">
+						<option selected="selected"
+							value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+<?php else : ?>
+					<select name="displetreader[include_keywords]">
+						<option value="yes">Yes</option>
+						<option value="no"
+							selected="selected">No</option>
+					</select>
+<?php endif ?>
+				</td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="displet_quick_search_propertytypes">Property Types</label></th>
+				<td>
+					<textarea name="displetreader[displet_quick_search_propertytypes]"><?php echo esc_html($settings['displet_quick_search_propertytypes']) ?></textarea>
+					<br/><span class="option_comment">Wrap each property type in "quotes" and separate with commas. Ex. "House","Condo"<BR>Property type suggestion: <?php if ($settings["displet_url"]!='') { ?><span id="autosuggest">... loading ...</span><?php } else {echo 'Requires Displet URL to be saved first';} ?></span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="displet_quick_search_minprice">Min Price</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[displet_quick_search_minprice]"
+						class="digits"
+						value="<?php echo esc_attr($settings['displet_quick_search_minprice']) ?>"/>
+					<br/><span class="option_comment">Min price (in thousands) for quick search dropdown. Enter an integer only. 100 = $100k. Ex. 100</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="displet_quick_search_maxprice">Max Price</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[displet_quick_search_maxprice]"
+						class="digits"
+						value="<?php echo esc_attr($settings['displet_quick_search_maxprice']) ?>"/>
+					<br/><span class="option_comment">Max price (in thousands) for quick search dropdown. Enter an integer only. 1000 = $1mm. Ex. 750</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="displet_quick_search_priceincrement">Price Increment</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[displet_quick_search_priceincrement]"
+						class="digits"
+						value="<?php echo esc_attr($settings['displet_quick_search_priceincrement']) ?>"/>
+					<br/><span class="option_comment">Count by this increment (in thousands) from price min to max. Enter an integer only. Ex. 50</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="displet_quick_search_maxbeds">Max Beds</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[displet_quick_search_maxbeds]"
+						class="digits"
+						value="<?php echo esc_attr($settings['displet_quick_search_maxbeds']) ?>"/>
+					<br/><span class="option_comment">Max beds for quick search dropdown. Enter an integer only. Ex. 5</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+			
+			<tr class="displet_option_row" <?php echo ($settings['enabled'] ? "" : 'disabled="disabled"') ?>>
+				<th scope="row"><label for="displet_quick_search_maxbaths">Max Baths</label></th>
+				<td>
+					<input size="4"
+						type="text"
+						name="displetreader[displet_quick_search_maxbaths]"
+						class="digits"
+						value="<?php echo esc_attr($settings['displet_quick_search_maxbaths']) ?>"/>
+					<br/><span class="option_comment">Max baths for quick search dropdown. Enter an integer only. Ex. 5</span>
+				</td>
+				<td class="displetreader-error"></td>
+			</tr>
+		</table>
+		<div class="displetreader-buttonset ui-buttonset">
+			<button type="submit" class="ui-button">Update</button>
+		</div>
+		</form>
+	</div>
+</div>
+
+<!--
+<div class="wrap">
+	<h2>DispletReader Settings</h2>
+	<form action="options.php" method="post">
+		<?php //settings_fields('displetreader') ?>
+		<?php // do_settings_sections('displetreader') ?>
+		<button type="submit"><?php // esc_html_e('Save Changes') ?></button>
+	</form>
+</div>
+-->
+
+<script>
+jQuery(document).ready(function($){
+	$('#ondispletreader').click(function(){
+		$('#ondispletlandingpage').removeClass('hidden');
+	});
+	$('#displetreaderpro').click(function(){
+		$('#ondispletlandingpage').addClass('hidden');
+	});
+	$('.form-tabs .tab-1 a').click(function(){
+		$('.form-tabs li').removeClass('active');
+		$('.form-tabs .tab-1').addClass('active');
+		$('.form-table').hide();
+		$('.table-1').show();
+	});
+	$('.form-tabs .tab-2 a').click(function(){
+		$('.form-tabs li').removeClass('active');
+		$('.form-tabs .tab-2').addClass('active');
+		$('.form-table').hide();
+		$('.table-2').show();
+	});
+	$('.form-tabs .tab-3 a').click(function(){
+		$('.form-tabs li').removeClass('active');
+		$('.form-tabs .tab-3').addClass('active');
+		$('.form-table').hide();
+		$('.table-3').show();
+	});
+	$('.form-tabs .tab-4 a').click(function(){
+		$('.form-tabs li').removeClass('active');
+		$('.form-tabs .tab-4').addClass('active');
+		$('.form-table').hide();
+		$('.table-4').show();
+	});
+});
+</script>
+
+<style>
+.clear{clear:both}
+.displetreader .form-tabs{
+	margin-top: 10px;
+	margin-bottom: -1px;
+	position: relative;
+	z-index: 9;
+}
+.displetreader .form-tabs li{
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	margin: 0px 0px 0px 10px;
+	border-bottom: 0;
+	list-style-type: none;
+}
+.displetreader .form-tabs a{
+	text-decoration: none;
+}
+.displetreader .form-tabs a:hover{
+	text-decoration: underline;
+}
+.displetreader .form-tabs .active{
+	background-color: #fff;
+}
+.displetreader .form-tabs .active a, .displetreader .form-tabs .active a:hover{
+	color: #ccc;
+	text-decoration: none;
+}
+.displetreader .form-table{
+	border: 1px solid #ccc;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	position: relative;
+	z-index: 8;
+}
+.displetreader .form-table th{
+	text-align: right;
+	width: 160px;
+}
+.displetreader .option_comment{
+	color: #666;
+}
+.displetreader label{
+	cursor: default;
+}
+.displetreader #autosuggest{
+	font-weight: bold;
+}
+</style>
+
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+<script>
+/**
+ * jQuery.ajax mid - CROSS DOMAIN AJAX 
+ * ---
+ * @author James Padolsey (http://james.padolsey.com)
+ * @version 0.11
+ * @updated 12-JAN-10
+ * ---
+ * Note: Read the README!
+ * ---
+ * @info http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
+ */
+
+jQuery.ajax = (function(_ajax){
+    
+    var protocol = location.protocol,
+        hostname = location.hostname,
+        exRegex = RegExp(protocol + '//' + hostname),
+        YQL = 'http' + (/^https/.test(protocol)?'s':'') + '://query.yahooapis.com/v1/public/yql?callback=?',
+        query = 'select * from html where url="{URL}" and xpath="*"';
+    
+    function isExternal(url) {
+        return !exRegex.test(url) && /:\/\//.test(url);
+    }
+    
+    return function(o) {
+        
+        var url = o.url;
+        
+        if ( /get/i.test(o.type) && !/json/i.test(o.dataType) && isExternal(url) ) {
+            
+            // Manipulate options so that JSONP-x request is made to YQL
+            
+            o.url = YQL;
+            o.dataType = 'json';
+            
+            o.data = {
+                q: query.replace(
+                    '{URL}',
+                    url + (o.data ?
+                        (/\?/.test(url) ? '&' : '?') + jQuery.param(o.data)
+                    : '')
+                ),
+                format: 'xml'
+            };
+            
+            // Since it's a JSONP request
+            // complete === success
+            if (!o.success && o.complete) {
+                o.success = o.complete;
+                delete o.complete;
+            }
+            
+            o.success = (function(_success){
+                return function(data) {
+                    
+                    if (_success) {
+                        // Fake XHR callback.
+                        _success.call(this, {
+                            responseText: (data.results[0] || '')
+                                // YQL screws with <script>s
+                                // Get rid of them
+                                .replace(/<script[^>]+?\/>|<script(.|\s)*?\/script>/gi, '')
+                        }, 'success');
+                    }
+                    
+                };
+            })(o.success);
+            
+        }
+        
+        return _ajax.apply(this, arguments);
+        
+    };
+    
+})(jQuery.ajax);
+</script>
+<script>
+// Must declare this to allow $ as shortcut for jQuery
+jQuery(document).ready(function($){
+        var url = '<?php echo esc_attr($settings["displet_url"]) ?>';
+        $.get(url, function(data) {
+			//var initialString = $(data.responseText).find('#propertyStyleHolder').html();
+			var suggestString = '';
+			var initialString = $(data.responseText).find('#propertyStyleHolder').find('*').each(function(){
+				if ($(this).is('input')){
+					suggestString += '"';
+					suggestString += $(this).val();
+					suggestString += '",';
+				}
+			});
+			suggestString=suggestString.substring(0, suggestString.length - 1);
+			$('#autosuggest').html(suggestString);
+        }, 'html');
+});
+</script>

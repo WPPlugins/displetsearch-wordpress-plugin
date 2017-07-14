@@ -1,0 +1,21 @@
+th, td { min-height: 2em}
+.mceActionPanel {
+	padding: 0;
+	position: absolute;
+	bottom: 1em;
+	width: 95%;
+}
+
+#logo {
+	float: right;
+}
+
+#criteria {
+	min-height: 313px;
+}
+
+.options {
+	width: 60%;
+	height: 100px;
+	padding-top: 1em;
+}

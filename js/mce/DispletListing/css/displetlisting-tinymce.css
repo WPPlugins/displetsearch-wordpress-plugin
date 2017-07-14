@@ -1,0 +1,35 @@
+.mceActionPanel {
+	padding: 0;
+	position: absolute;
+	bottom: 5px;
+	width: 95%;
+}
+
+#logo {
+	float: right;
+}
+
+#edit_form{
+	padding-bottom: 20px;
+}
+
+#criteria {
+	min-height: 350px;
+}
+
+#criteria table{
+	line-height: 14px;
+}
+
+#criteria input{
+	height: 14px;
+}
+
+.options {
+	width: 80%;
+	padding-top: 1em;
+}
+
+.marleft{
+	padding-left: 20px;
+}

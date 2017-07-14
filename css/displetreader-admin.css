@@ -1,0 +1,18 @@
+.displetreader #displetreader-admin {
+	padding: .5em 1em;
+}
+
+.displetreader #displetreader-admin .displetreader-buttonset {
+	text-align: center;
+	margin-top: 1em;
+}
+
+.displetreader #displetreader-admin textarea {
+	width: 100%;
+}
+
+.displetreader .option_comment {
+	font-style: italic;
+	font-size: .8em;
+	width: 100%;
+}

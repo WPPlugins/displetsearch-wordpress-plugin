@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit DispletStats</title>	
+	<script src="../../tiny_mce_popup.js"></script>
+	<script src="../../../jquery-1.4.4.min.js"></script>
+	<script src="../../../jquery-ui.min.js"></script>
+	<script src="../js/dialog_edit.js"></script>
+	<link rel="stylesheet" type="text/css"
+	href="../../../../css/pepper-grinder/jquery-ui-1.8.11.custom.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/displetstats-tinymce.css"/>
+</head>
+<body>
+<div class="displetreader">
+	<form id="edit_form">
+		<div id="logo">
+			<img src="../images/button_insert_large.png"/>
+		</div>
+
+		<div class="options">
+			<table>
+				<tr>
+					<th scope="row"><label for="caption">Caption</label></th>
+		 			<td><input id="caption" name="caption" 
+						type="text" class="text" />
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="criteria" class="ui-tabs">
+			<ul>
+				<li><a href="#basic">Basic</a></li>
+				<li><a href="#features">Features</a></li>
+				<li><a href="#location">Location</a></li>
+				<li><a href="#schools">Schools</a></li>
+				<li><a href="#advanced">Advanced</a></li>
+			</ul>
+			<div id="basic">
+				<table>
+					<tr>
+						<th scope="row">Minimum Price</th>
+						<td><input type="text" name="minListPrice"/>,000</td>
+					</tr>
+					<tr>
+						<th scope="row">Maximum Price</th>
+						<td><input type="text" name="maxListPrice"/>,000</td>
+					</tr>
+					<tr>
+						<th scope="row">Minimum Bedrooms</th>
+						<td><input type="text" name="minBedrooms"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Maximum Bedrooms</th>
+						<td><input type="text" name="maxBedrooms"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Minimum Bathrooms</th>
+						<td><input type="text" name="minBathrooms"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Maximum Bathrooms</th>
+						<td><input type="text" name="maxBathrooms"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Minimum Sq Ft</th>
+						<td><input type="text" name="minSquareFeet"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Maximum Sq Ft</th>
+						<td><input type="text" name="maxSquareFeet"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Minimum Stories</th>
+						<td><input type="text" name="minStories"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Minimum Acreage</th>
+						<td><input type="text" name="minAcres"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Age</th>
+						<td><input type="text" name="yearBuilt"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Property Type</th>
+						<td><input type="text" name="property_type"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Keywords</th>
+						<td><input type="text" name="keyword"/></td>
+					</tr>
+				</table>
+			</div>
+			<div id="features">
+				<table>
+					<tr>
+						<th scope="row">Waterfront</th>
+						<td>
+							<input type="radio" name="waterfront" value=""/>Any<br/>
+							<input type="radio" name="waterfront" value="Y"/>Yes<br/>
+							<input type="radio" name="waterfront" value="N"/>No
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Pool</th>
+						<td>
+							<input type="radio" name="pool_on_property" value=""/>Any<br/>
+							<input type="radio" name="pool_on_property" value="Y"/>Yes<br/>
+							<input type="radio" name="pool_on_property" value="N"/>No
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="location">
+				<table>
+					<tr>
+						<th scope="row">Area (<a href="http://reference.displet.com/doku.php//agent_defined_area_vs_mls_defined_area" target="_blank">Agent Defined</a>)</th>
+						<td><input type="text" name="area"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Area (<a href="http://reference.displet.com/doku.php//agent_defined_area_vs_mls_defined_area" target="_blank">MLS Defined</a>)</th>
+						<td><input type="text" name="area_mls_defined"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Street Number</th>
+						<td><input type="text" name="street_number"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Street Name</th>
+						<td><input type="text" name="street_name"/></td>
+					</tr>
+					<tr>
+						<th scope="row">City</th>
+						<td><input type="text" name="city"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Subdivision</th>
+						<td><input type="text" name="subdivision"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Zip Codes</th>
+						<td><input type="text" name="zip"/></td>
+					</tr>
+				</table>
+			</div>
+			<div id="schools">
+				<table>
+					<tr>
+						<th scope="row">School</th>
+						<td><input type="text" name="school"/></td>
+					</tr>
+					<tr>
+						<th scope="row">School District</th>
+						<td><input type="text" name="school_district"/></td>
+					</tr>
+				</table>
+			</div>
+			<div id="advanced">
+				<table>
+					<tr>
+						<th scope="row">Status</th>
+						<td><input type="text" name="status"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Short Sale</th>
+						<td>
+							<input type="radio" name="short_sale" value=""/>Any<br/>
+							<input type="radio" name="short_sale" value="Y"/>Yes<br/>
+							<input type="radio" name="short_sale" value="N"/>No
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Foreclosure</th>
+						<td>
+							<input type="radio" name="is_foreclosure" value=""/>Any<br/>
+							<input type="radio" name="is_foreclosure" value="Y"/>Yes<br/>
+							<input type="radio" name="is_foreclosure" value="N"/>No
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">MLS #</th>
+						<td><input type="text" name="mls_number"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Listing Agent ID</th>
+						<td><input type="text" name="listing_agent_id"/></td>
+					</tr>
+					<tr>
+						<th scope="row">Listing Office ID</th>
+						<td><input type="text" name="listing_office_id"/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="mceActionPanel">
+			<button id="insert" type="submit">Save</button>
+			<button id="cancel">Cancel</button>
+		</div>
+	</form>
+</div>
+</body>
+
+</html>

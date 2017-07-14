@@ -1,0 +1,169 @@
+<div id="criteria" class="ui-tabs">
+	<ul>
+		<li><a href="#basic">Basic</a></li>
+		<li><a href="#features">Features</a></li>
+		<li><a href="#location">Location</a></li>
+		<li><a href="#schools">Schools</a></li>
+		<li><a href="#advanced">Advanced</a></li>
+	</ul>
+	<div id="basic">
+		<table>
+			<tr>
+				<th scope="row">Minimum Price</th>
+				<td><input type="text" name="criteria[minListPrice]"/>,000</td>
+			</tr>
+			<tr>
+				<th scope="row">Maximum Price</th>
+				<td><input type="text" name="criteria[maxListPrice]"/>,000</td>
+			</tr>
+			<tr>
+				<th scope="row">Minimum Bedrooms</th>
+				<td><input type="text" name="criteria[minBedrooms]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Maximum Bedrooms</th>
+				<td><input type="text" name="criteria[maxBedrooms]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Minimum Bathrooms</th>
+				<td><input type="text" name="criteria[minBathrooms]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Maximum Bathrooms</th>
+				<td><input type="text" name="criteria[maxBathrooms]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Minimum Sq Ft</th>
+				<td><input type="text" name="criteria[minSquareFeet]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Maximum Sq Ft</th>
+				<td><input type="text" name="criteria[maxSquareFeet]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Minimum Stories</th>
+				<td><input type="text" name="criteria[minStories]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Minimum Acreage</th>
+				<td><input type="text" name="criteria[minAcres]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Age</th>
+				<td><input type="text" name="criteria[yearBuilt]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Property Style</th>
+				<td><input type="text" name="criteria[property_type]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Keywords</th>
+				<td><input type="text" name="criteria[keyword]"/></td>
+			</tr>
+		</table>
+	</div>
+	<div id="features">
+		<table>
+			<tr>
+				<th scope="row">Waterfront</th>
+				<td>
+					<input type="radio" name="criteria[waterfront]" value=""/>Any<br/>
+					<input type="radio" name="criteria[waterfront]" value="Y"/>Yes<br/>
+					<input type="radio" name="criteria[waterfront]" value="N"/>No
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">Pool</th>
+				<td>
+					<input type="radio" name="criteria[pool_on_property]" value=""/>Any<br/>
+					<input type="radio" name="criteria[pool_on_property]" value="Y"/>Yes<br/>
+					<input type="radio" name="criteria[pool_on_property]" value="N"/>No
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="location">
+		<table>
+			<tr>
+				<th scope="row">Area (<a href="http://reference.displet.com/doku.php//agent_defined_area_vs_mls_defined_area" target="_blank">Agent Defined</a>)</th>
+				<td><input type="text" name="criteria[area]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Area (<a href="http://reference.displet.com/doku.php//agent_defined_area_vs_mls_defined_area" target="_blank">MLS Defined</a>)</th>
+				<td><input type="text" name="criteria[area_mls_defined]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Street Number</th>
+				<td><input type="text" name="criteria[street_number]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Street Name</th>
+				<td><input type="text" name="criteria[street_name]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">City</th>
+				<td><input type="text" name="criteria[city]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Subdivision</th>
+				<td><input type="text" name="criteria[subdivision]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Zip Codes</th>
+				<td><input type="text" name="criteria[zip]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">County</th>
+				<td><input type="text" name="criteria[county]"/></td>
+			</tr>
+		</table>
+	</div>
+	<div id="schools">
+		<table>
+			<tr>
+				<th scope="row">School</th>
+				<td><input type="text" name="criteria[school]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">School District</th>
+				<td><input type="text" name="criteria[school_district]"/></td>
+			</tr>
+		</table>
+	</div>
+	<div id="advanced">
+		<table>
+			<tr>
+				<th scope="row">Status</th>
+				<td><input type="text" name="criteria[status]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Short Sale</th>
+				<td>
+					<input type="radio" name="criteria[short_sale]" value=""/>Any<br/>
+					<input type="radio" name="criteria[short_sale]" value="Y"/>Yes<br/>
+					<input type="radio" name="criteria[short_sale]" value="N"/>No
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">Foreclosure</th>
+				<td>
+					<input type="radio" name="criteria[is_foreclosure]" value=""/>Any<br/>
+					<input type="radio" name="criteria[is_foreclosure]"/>Yes<br/>
+					<input type="radio" name="criteria[is_foreclosure]"/>No
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">MLS #</th>
+				<td><input type="text" name="criteria[mls_number]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Listing Agent ID</th>
+				<td><input type="text" name="criteria[listing_agent_id]"/></td>
+			</tr>
+			<tr>
+				<th scope="row">Listing Office ID</th>
+				<td><input type="text" name="criteria[listing_office_id]"/></td>
+			</tr>
+		</table>
+	</div>
+</div>

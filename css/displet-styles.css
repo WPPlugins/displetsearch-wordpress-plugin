@@ -1,0 +1,848 @@
+/******************
+Global Styles
+******************/
+
+@import url('http://fonts.googleapis.com/css?family=PT+Sans+Narrow:700');
+@import url('http://fonts.googleapis.com/css?family=Oswald');
+
+body #displet-listings .displet-clear,
+body #displet-tile .displet-clear,
+body #displet-dynamic .displet-clear,
+body #displet-sidescroller-widget .displet-clear{
+	clear: both;
+}
+
+body #displet-listings .displet-listing-hovertrans,
+body #displet-tile .displet-tile-hovertrans{
+	display: none;
+	position: absolute;
+}
+
+body #displet-stats *,
+body #displet-map *,
+body #displet-listings *,
+body #displet-tile *,
+body #displet-dynamic *,
+body #displet-price-navigation *,
+body #displet-property-type-navigation *,
+body #displet-sidescroller-widget *{
+	outline: 0px;
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	max-width: none;
+	font-weight: normal;
+}
+
+/******************
+Price Navigation Styles
+******************/
+
+body #displet-price-navigation, body #displet-property-type-navigation{
+	margin: 10px 0px 26px 0px;
+	line-height: 30px;
+	font-weight: bold;
+}
+
+body #displet-price-navigation .displet-title, body #displet-property-type-navigation .displet-title{
+	font-family: 'Georgia', serif;
+	font-size: 14px;
+	color: #474747;
+	text-align: center;
+	background-color: #f7f7f7;
+}
+
+body #displet-price-navigation table, body #displet-property-type-navigation table{
+	border-top: 1px solid #dedede;
+	padding: 12px 20px;
+	width: 100%;
+	border-collapse: separate;
+	font-family: 'Arial', sans-serif;
+	font-size: 12px;
+	background-color: #f7f7f7;
+}
+
+body #displet-price-navigation td, body #displet-property-type-navigation td{
+	width: 33%;
+}
+
+body #displet-price-navigation a, body #displet-property-type-navigation a{
+	color: #606060;
+	text-decoration: underline;
+	font-style: italic;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+body #displet-price-navigation a:hover, body #displet-property-type-navigation a:hover{
+	text-decoration: none;
+}
+
+body #displet-price-navigation a.active, body #displet-property-type-navigation a.active{
+	text-decoration: none;
+	cursor: default;
+}
+
+/******************
+Stats Styles
+******************/
+
+body #displet-stats {
+	margin: 10px 0px 28px 0px;
+}
+
+body #displet-stats .displet-title{
+	line-height: 30px;
+	font-family: 'Georgia', serif;
+	font-size: 14px;
+	color: #474747;
+	font-weight: bold;
+	text-align: center;
+}
+
+body #displet-stats table {
+	border: 1px solid #b0b0b0;
+	border-left: 5px solid #b0b0b0;
+	border-right: 5px solid #b0b0b0;
+	border-collapse: separate;
+	padding: 9px 15px;
+	width: 100%;
+	background-color: #fff;
+}
+
+body #displet-stats th, body #displet-stats td {
+	border: 0px;
+	padding: 5px 0px;
+	line-height: 20px;
+	font-family: 'Arial', sans-serif;
+	font-size: 12px;
+	color: #606060;
+	text-align: left;
+}
+
+body #displet-stats th{
+	font-weight: bold;
+	text-transform: none;
+}
+
+body #displet-stats body #displet-stats-no-results {
+	text-align: center;
+}
+
+/******************
+Map Styles
+******************/
+
+body #displet-map{
+	margin: 10px 0px;
+}
+
+body #displet-map img{
+	max-width: none;
+}
+
+body #displet-map .marker-inner{
+	text-align: center;
+	line-height: 18px;
+}
+
+body #displet-map .marker-inner a{
+	color: #606060;
+	text-decoration: none;
+}
+
+body #displet-map .marker-inner a:hover{
+	color: #333;
+}
+
+body #displet-map .marker-inner h3,
+body #displet-map .marker-inner h4{
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Arial', sans-serif;
+}
+
+body #displet-map .marker-inner h3{
+	font-size: 16px;
+	line-height: 18px;
+}
+
+body #displet-map .marker-inner h4{
+	font-size: 14px;
+	line-height: 18px;
+}
+
+body #displet-map .showhide{
+	margin-bottom: 10px;
+	line-height: 14px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+body #displet-map.showing .show,
+body #displet-map.hiding .hide{
+	display: none;
+}
+
+body #displet-map .showhide .plusminus{
+	padding-right: 10px;
+	color: #b0b0b0;
+}
+
+body #displet-map .showhide .under{
+	font-family: 'Georgia', serif;
+	color: #474747;
+}
+
+body #displet-map .showhide a,
+body #displet-map .showhide a:hover{
+	text-decoration: none;
+}
+
+body #displet-map .showhide a:hover .under{
+	text-decoration: underline;
+}
+
+body #displet-map #map_canvas{
+	position: relative;
+}
+
+body #displet-map.hiding #map_canvas{
+	left: -9999px;
+}
+
+body #displet-map.showing #map_canvas{
+	margin-bottom: 0px !important;
+}
+
+/******************
+Listing Navigation Styles
+******************/
+
+body #displet-listings .displet-listings-controls,
+body #displet-tile .displet-tile-controls{
+	margin-bottom: 21px;
+	border-bottom: 1px solid #dedede;
+	padding: 4px 14px;
+	line-height: 22px;
+	font-size: 11px;
+	color: #606060;
+	font-weight: bold;
+	background-color: #f7f7f7;
+}
+
+
+body #displet-dynamic #displet-listings .displet-listings-controls,
+body #displet-dynamic #displet-tile .displet-tile-controls{
+	text-align: right;
+}
+
+body #displet-listings .displet-listings-controls a,
+body #displet-tile .displet-tile-controls a{
+	color: #606060;
+	text-decoration: none;
+}
+
+body #displet-listings .displet-listings-controls a:hover,
+body #displet-tile .displet-tile-controls a:hover{
+	text-decoration: underline;
+}
+
+body #displet-listings .displet-listings-counts,
+body #displet-tile .displet-tile-counts{
+	display: inline;
+	margin-right: 1.5em;
+}
+
+body #displet-dynamic #displet-listings .displet-listings-counts,
+body #displet-dynamic #displet-tile .displet-tile-counts{
+	float: left;
+}
+
+body #displet-listings .displet-listings-control-prev-link,
+body #displet-listings .displet-listings-control-next-link,
+body #displet-tile .displet-tile-control-prev-link,
+body #displet-tile .displet-tile-control-next-link{
+	color: #606060;
+	margin-right: 10px;
+}
+
+body #displet-dynamic #displet-listings .displet-listings-control-next-link,
+body #displet-dynamic #displet-tile .displet-tile-control-next-link{
+	margin-right: 0px;
+}
+
+body #displet-listings .displet-listings-control-prev-icon,
+body #displet-listings .displet-listings-control-next-icon,
+body #displet-tile .displet-tile-control-prev-icon,
+body #displet-tile .displet-tile-control-next-icon{
+	font-weight: bold;
+}
+
+body #displet-listings .displet-listings-controls select.displet-listings-sortby,
+body #displet-tile .displet-tile-controls select.displet-tile-sortby{
+	float: right;
+	border: 1px solid #b0b0b0;
+	height: 22px;
+	font-family: 'Arial', sans-serif;
+	font-size: 11px;
+	color: #606060;
+	background-color: #fff;
+}
+
+body #displet-dynamic #displet-listings .displet-listings-controls select.displet-listings-sortby,
+body #displet-dynamic #displet-tile .displet-tile-controls select.displet-tile-sortby{
+	margin: -38px -14px 0px 0px;
+	height: 24px;
+}
+
+/******************
+Dyanimc Listings Styles
+******************/
+
+body #displet-dynamic{
+	margin-top: 28px;
+}
+
+body #displet-dynamic .displet-orientation{
+	height: 24px;
+}
+
+body #displet-dynamic .displet-orientation a{
+	display: block;
+	float: left;
+	margin-right: 10px;
+	border: 1px solid #fff;
+	padding: 0px 6px;
+	height: 22px;
+	line-height: 22px;
+	font-family: 'Georgia', serif;
+	font-size: 13px;
+	color: #a3a3a3;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+body #displet-dynamic .displet-orientation a:hover, body #displet-dynamic .displet-orientation a.current{
+	border-color: #606060;
+	color: #606060;
+}
+
+body #displet-dynamic .displet-orientation a.current{
+	cursor: default;
+}
+
+body #displet-dynamic .displet-orientation .displet-tile-view{
+	padding-left: 24px;
+	background: #fff url('images/tileview.png') 6px 6px no-repeat;
+}
+
+body #displet-dynamic .displet-orientation .displet-tile-view:hover, body #displet-dynamic .displet-orientation .displet-tile-view.current{
+	background-position: 6px -12px;
+}
+
+body #displet-dynamic .displet-orientation .displet-list-view{
+	padding-left: 23px;
+	background: #fff url('images/listview.png') 6px 6px no-repeat;
+}
+
+body #displet-dynamic .displet-orientation .displet-list-view:hover, body #displet-dynamic .displet-orientation .displet-list-view.current{
+	background-position: 6px -12px;
+}
+
+/******************
+Vertical Listings Styles
+******************/
+
+body #displet-listings {
+	margin: 28px 0px 10px 0px;
+	font-family: 'Arial', sans-serif;
+	font-size: 12px;
+}
+
+body #displet-dynamic #displet-listings{
+	margin-top: 10px;
+}
+
+body #displet-listings .displet-listing,
+body #displet-listings .displet-listing:hover {
+	display: block;
+	position: relative;
+	margin-bottom: 10px;
+	border: 1px solid #b0b0b0;
+	padding: 19px 15px;
+	font-family: 'Arial', sans-serif;
+	font-size: 12px;
+	color: #606060;
+	text-decoration: none;
+	background-color: #fff;
+}
+
+body #displet-listings .displet-listing .displet-listing-hovertrans {
+	top: -1px;
+	left: -1px;
+	border: 1px solid #b1b1b1;
+	padding-left: 8px;
+	background: url('images/listinglefthov.png') 0px 0px no-repeat;
+	box-shadow: 0px 0px 2px #777;
+	z-index: 1;
+}
+
+body #displet-listings .displet-listing .displet-listing-hovertrans .displet-inner{
+	padding-right: 8px;
+	background: url('images/listingrighthov.png') right 0px no-repeat;
+}
+
+body #displet-listings .displet-listing .displet-listing-hovertrans .displet-inner .displet-inner2{
+	background: url('images/listingbackhov.png') 0px 0px repeat-x;
+}
+
+body #displet-listings .displet-listing-thumb-container,
+body #displet-listings .displet-listing-info{
+	position: relative;
+	z-index: 2;
+}
+
+body #displet-listings .displet-listing .displet-listing-thumb-container{
+	position: relative;
+	float: left;
+	margin-right: 19px;
+	outline: 1px solid #afafaf;
+	border: 1px solid #fff;
+	width: 193px;
+	height: 153px;
+	overflow: hidden;
+}
+
+body #displet-listings .displet-listing .displet-listing-thumb-container img {
+	margin-left: -10px;
+	height: 153px;
+	width: 214px;
+	max-width: 214px;
+}
+
+body #displet-listings .displet-listing .displet-listing-info{
+	position: relative;
+	margin-left: 214px;
+	max-height: 159px;
+	overflow: hidden;
+}
+
+body #displet-listings .displet-listing .displet-listing-info .displet-text-overlay,
+body #displet-listings .displet-listing:hover .displet-listing-info .displet-text-overlay-hovertrans{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 60px;
+	height: 18px;
+}
+
+body #displet-listings .displet-listing .displet-listing-info .displet-text-overlay{
+	background: url('images/textoverlay.png') 0px 0px no-repeat;
+}
+
+body #displet-listings .displet-listing:hover .displet-listing-info .displet-text-overlay-hovertrans{
+	display: none;
+	background-image: url('images/textoverlayhov.png');
+}
+
+body #displet-listings .displet-listing-price {
+	float: left;
+	line-height: 14px;
+	font-family: 'Oswald', Arial, sans-serif;
+	font-size: 14px;
+}
+
+body #displet-listings .displet-listing-address {
+	float: right;
+	max-width: 250px;
+	line-height: 14px;
+	text-align: right;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+body #displet-listings .displet-listing-specs {
+	margin: 14px 0px 0px 0px;
+	border: 0px;
+	border-top: 1px dotted #606060;
+	border-bottom: 1px dotted #606060;
+	padding: 7px 0px;
+	width: 100%;
+}
+
+body #displet-listings .displet-listing-specs th,
+body #displet-listings .displet-listing-specs td {
+	border: 0px;
+	padding: 3px 0px;
+	line-height: 18px;
+	font-size: 12px;
+	color: #606060;
+	text-transform: none;
+	text-align: center;
+}
+
+body #displet-listings .displet-listing-specs th {
+	font-weight: bold;
+}
+
+body #displet-listings .displet-listing .displet-listing-description{
+	margin-top: 10px;
+	min-height: 8px;
+	max-height: 54px;
+	line-height: 18px;
+}
+
+/******************
+Tile Listings Styles
+******************/
+
+body #displet-tile {
+	margin: 28px 0px 10px 0px;
+	font-family: 'Arial', sans-serif;
+	font-size: 12px;
+}
+
+body #displet-dynamic #displet-tile{
+	margin-top: 10px;
+}
+
+body #displet-tile .displet-tile-listing,
+body #displet-tile .displet-tile-listing:hover {
+	position: relative;
+	float: left;
+	margin-bottom: 13px;
+	border: 1px solid #b1b1b1;
+	padding: 5px 5px 3px 5px;
+	width: 197px;
+	color: #606060;
+	text-decoration: none;
+	background-color: #fff;
+}
+
+body #displet-tile .displet-tile-listing .displet-tile-hovertrans {
+	top: -1px;
+	left: -1px;
+	border: 1px solid #b1b1b1;
+	padding-top: 8px;
+	background: url('images/tiletophov.png') 0px 0px no-repeat;
+	box-shadow: 0px 0px 2px #777;
+	z-index: 1;
+}
+
+body #displet-tile .displet-tile-listing .displet-tile-hovertrans .displet-inner{
+	padding-bottom: 8px;
+	background: url('images/tilebottomhov.png') 0px bottom no-repeat;
+}
+
+body #displet-tile .displet-tile-listing .displet-tile-hovertrans .displet-inner .displet-inner2{
+	background: url('images/tilebackhov.png') 0px 0px repeat-y;
+}
+
+body #displet-tile .displet-tile-thumb-container,
+body #displet-tile .displet-tile-price-container,
+body #displet-tile .displet-tile-info{
+	position: relative;
+	z-index: 2;
+}
+
+body #displet-tile .displet-tile-thumb-container {
+	position: relative;
+	margin: 1px;
+	outline: 1px solid #afafaf;
+	border: 1px solid #fff;
+	width: 193px;
+	height: 153px;
+	overflow: hidden;
+}
+
+body #displet-tile .displet-tile-thumb-container img {
+	margin-left: -10px;
+	height: 153px;
+	max-width: 200%;
+}
+
+body #displet-tile .displet-tile-price-container {
+	margin: 10px 5px 15px 5px;
+	line-height: 14px;
+	font-family: 'Oswald', 'Arial', sans-serif;
+	font-size: 14px;
+}
+
+body #displet-tile .displet-tile-price-container .displet-dollar,
+body #displet-tile .displet-tile-price-container .displet-tile-listing-price{
+	display: block;
+	float: left;
+}
+
+body #displet-tile .displet-tile-price-container .displet-dollar{
+	margin-right: 4px;
+}
+
+body #displet-tile .displet-tile-address,
+body #displet-tile .displet-tile-specs {
+	margin: 0px 5px;
+	border-top: 1px dotted #606060;
+	padding: 9px 0px;
+	line-height: 21px;
+}
+
+/******************
+Banner Overlay Styles
+******************/
+
+body #displet-listings .displet-listing .tileoverlay,
+body #displet-tile .tileoverlay{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 83px;
+	width: 82px;
+	text-indent: -9999px;
+	z-index:8;
+}
+
+body #displet-listings .displet-listing .tileoverlay.undercontract,
+body #displet-tile .tileoverlay.undercontract{
+	background: url('images/under-contract.png') 0px 0px no-repeat;
+}
+
+
+body #displet-listings .displet-listing .tileoverlay.contingency,
+body #displet-tile .tileoverlay.contingency{
+	background: url('images/contingency.png') 0px 0px no-repeat;
+}
+
+body #displet-listings .displet-listing .tileoverlay div,
+body #displet-tile .tileoverlay div{
+	margin: 22px 0px 0px -8px;
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+/******************
+Other Styles
+******************/
+
+body #displet-listings .displet-powered,
+body #displet-tile .displet-powered{
+	margin-top: -10px;
+	line-height: 14px;
+	text-align: right;
+}
+
+body #displet-listings .displet-listings-no-results,
+body #displet-listings .displet-listings-no-results{
+}
+
+body #displet-listings .displet-listings-disclaimer,
+body #displet-tile .displet-tile-disclaimer{
+}
+
+/******************
+Sidescroller Styles
+******************/
+
+body #displet-sidescroller-widget{
+	position: relative;
+	border: 1px solid #afafaf;
+	padding-bottom: 40px;
+	width: 100%;
+	max-height: 1000px;
+	font-family: 'Arial', sans-serif;
+	font-size: 12px;
+	background-color: #fff;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+body #displet-sidescroller-widget li{
+	position: relative;
+	z-index: 8;
+}
+
+body #displet-sidescroller-widget .displet-sidescroller-widget-listing,
+body #displet-sidescroller-widget .displet-sidescroller-widget-listing:hover{
+	display: block;
+	padding: 10px;
+	color: #606060;
+	text-decoration: none;
+}
+
+body #displet-sidescroller-widget .displet-sidescroller-widget-thumb-container {
+	outline: 1px solid #afafaf;
+	border: 1px solid #fff;
+	overflow: hidden;
+	min-height: 117px;
+}
+
+body #displet-sidescroller-widget .displet-sidescroller-widget-thumb-container img {
+	display: block;
+	width: 100%;
+}
+
+body #displet-sidescroller-widget .displet-sidescroller-widget-price-container {
+	margin: 10px 5px 15px 5px;
+	line-height: 14px;
+	font-family: 'Oswald', 'Arial', sans-serif;
+	font-size: 14px;
+}
+
+body #displet-sidescroller-widget .displet-sidescroller-widget-price-container .displet-dollar,
+body #displet-sidescroller-widget .displet-sidescroller-widget-price-container .displet-sidescroller-widget-listing-price{
+	display: block;
+	float: left;
+}
+
+body #displet-sidescroller-widget .displet-sidescroller-widget-price-container .displet-dollar{
+	margin-right: 4px;
+}
+
+body #displet-sidescroller-widget .displet-sidescroller-widget-info{
+	height: 155px;
+	overflow: hidden;
+}
+
+body #displet-sidescroller-widget .displet-sidescroller-widget-address,
+body #displet-sidescroller-widget .displet-sidescroller-widget-specs {
+	margin: 0px 5px;
+	border-top: 1px dotted #606060;
+	padding: 9px 0px;
+	line-height: 21px;
+}
+
+body #displet-sidescroller-widget .displet-subdivision{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+body #displet-sidescroller-widget .displet-view-details{
+	display: inline-block;
+	margin: 12px 0px 0px 5px;
+	padding-right: 10px;
+	line-height: 12px;
+	font-size: 11px;
+	color: #474747;
+	font-weight: bold;
+	background: url('images/details.png') right 4px no-repeat;
+}
+
+body #displet-sidescroller-widget .displet-view-details:hover{
+	text-decoration: underline;
+}
+
+body #displet-sidescroller-widget .displet-navigation{
+	margin: 0px auto;
+	width: 45px;
+}
+
+body #displet-sidescroller-widget .displet-navigation-inner{
+	position: absolute;
+	bottom: 10px;
+	width: 45px;
+	z-index: 10;
+}
+
+body #displet-sidescroller-widget .displet-navigation-previous,
+body #displet-sidescroller-widget .displet-navigation-next{
+	display: block;
+	border: 1px solid #afafaf;
+	width: 18px;
+	height: 19px;
+	line-height: 19px;
+	text-align: center;
+	text-indent: -9999px;
+	background-color: #dedede;
+	background-position: 6px 5px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+body #displet-sidescroller-widget .displet-navigation-previous{
+	float: left;
+	background-image: url('images/previous.png');
+}
+
+body #displet-sidescroller-widget .displet-navigation-next{
+	float: right;
+	background-image: url('images/next.png');
+}
+
+/******************
+Listings Widget Styles
+******************/
+
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+/* end clearfix */
+
+a.displet-listing-widget-listing {
+	background-color: #f0f0f0;
+	border: 1px solid #ccc;
+	margin: 3px 3px 1em;
+	color: #000;
+	text-decoration: none;
+	font-weight: normal;
+	display: block;
+}
+
+a.displet-listing-widget-listing:hover {
+	background-color: #ddd;
+	-moz-box-shadow: 0 0 5px #333;
+	-webkit-box-shadow: 0 0 5px #333;
+	box-shadow: 0 0 5px #333;
+	text-decoration: none;
+}
+
+.displet-listing-widget-listing .displet-listing-widget-thumb-container {
+	border-bottom: 1px solid #ccc;
+	padding: .25em;
+	background-color: #fff;
+}
+
+.displet-listing-widget-listing .displet-listing-widget-thumb-container img {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.displet-listing-widget-listing .displet-listing-widget-price-container {
+	text-align: center;
+	font-size: 1.25em;
+	font-weight: bold;
+	border-bottom: 1px dotted #ccc;
+	padding-top: .5em;
+	padding-bottom: .5em;
+}
+
+.displet-listing-widget-listing .displet-listing-widget-bottom {
+	padding: .5em 1em;
+}
+
+.displet-listing-widget-listing .displet-listing-widget-details-container {
+	text-align: right;
+}
+
+.displet-listings-widget .displet-listing-widget-no-results {
+	text-align: center;
+}
+
+/******************
+Stats Widget Styles
+******************/
+
+.displet-stats-widget {
+	
+}
+
+.displet-stats-widget .displet-stats-widget-no-results {
+	text-align: center;
+}
